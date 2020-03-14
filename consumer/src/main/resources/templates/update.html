@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+
+    <title>主页</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script th:src="@{/js/update.js}"  type="text/javascript"></script>
+</head>
+<body>
+<!-- 页面显示部分 -->
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading text-center">
+            <h2>秒杀列表</h2>
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>库存</th>
+                    <th>开始时间</th>
+                    <th>结束时间</th>
+                    <th>创建时间</th>
+                    <th>redis缓存更新</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="c, State : ${list}">
+                    <td th:text="${c.name}" ></td>
+                    <td th:text="${c.number}"></td>
+                    <td th:text="${#dates.format(c.startTime,'yyyy-MM-dd HH:mm:ss')}"  ></td>
+                    <td th:text="${#dates.format(c.endTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+                    <td th:text="${#dates.format(c.createTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+                </tr>
+                <h2>缓存已更新成功</h2>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

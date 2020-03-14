@@ -1,0 +1,42 @@
+server:
+  port: 8000
+#Eureka配置
+eureka:
+  instance:
+    instance-id: Server
+  client:
+    register-with-eureka: true
+    service-url:
+      #做集群需要关联集群的eureka服务器的地址,其实端口号都应该是7001，
+      #关联的只是服务器地址，这里因为只有一台电脑，就用了端口号代替
+      defaultZone: http://127.0.0.1:7001/eureka/
+
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: cn.ninexv.seckill.dao
+
+spring:
+  application:
+    name: Server
+  datasource:
+    url: jdbc:mysql:
+    username: root
+    password: 
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  rabbitmq:
+    host: 
+    port: 5672
+    username: admin
+    password: 
+    template:
+      exchange: amq.direct
+      routing-key: seckill
+    virtual-host: admin
+    publisher-confirms: true
+    publisher-returns: true
+    listener:
+      simple:
+        acknowledge-mode: manual

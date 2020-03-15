@@ -7,16 +7,16 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class ConfigBean {
-    @Bean
-    public RestTemplate getRestTemplate() {
-        return new RestTemplate();
-    }
-
-//    //负载均衡实现RestTemplate
 //    @Bean
-//    @LoadBalanced       //Ribbon
-//    public RestTemplate getRestTemplate(){
+//    public RestTemplate getRestTemplate() {
 //        return new RestTemplate();
 //    }
+
+    //负载均衡实现RestTemplate
+    @Bean
+    @LoadBalanced       //Ribbon
+    public RestTemplate getRestTemplate(){
+        return new RestTemplate();
+    }
 }
 

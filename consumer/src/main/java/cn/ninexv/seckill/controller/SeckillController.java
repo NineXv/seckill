@@ -38,8 +38,8 @@ public class SeckillController {
 
     @Autowired
     RestTemplate restTemplate;
-//    @Value("${SeverUrl}")
-    private String REST_URL_PREFIX="http://localhost:8000/seckill";
+
+    private static final String REST_URL_PREFIX="http://SERVER";
 
     /**
      * 这个方法其实挺尴尬的。。
@@ -49,7 +49,7 @@ public class SeckillController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
         // 获取列表页
-        String lists = restTemplate.getForObject(REST_URL_PREFIX + "/list", String.class);
+        String lists = restTemplate.getForObject(REST_URL_PREFIX + "/seckill/list", String.class);
         ObjectMapper mapper = new ObjectMapper();
         List<Seckill> seckills = new ArrayList<>();
         try {

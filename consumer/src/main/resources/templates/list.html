@@ -20,29 +20,27 @@
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading text-center">
-            <h2>秒杀列表</h2>
+            <h2>商城--秒杀</h2>
         </div>
         <div class="panel-body">
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th>名称</th>
+                    <th>秒杀商品</th>
                     <th>库存</th>
-                    <th>开始时间</th>
-                    <th>结束时间</th>
-                    <th>创建时间</th>
-                    <th>详情页</th>
+                    <th>begin</th>
+                    <th>end</th>
+                    <th> </th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="c, State : ${list}">
-                    <td th:text="${c.name}" ></td>
-                    <td th:text="${c.number}"></td>
-                    <td th:text="${#dates.format(c.startTime,'yyyy-MM-dd HH:mm:ss')}"  ></td>
-                    <td th:text="${#dates.format(c.endTime,'yyyy-MM-dd HH:mm:ss')}"></td>
-                    <td th:text="${#dates.format(c.createTime,'yyyy-MM-dd HH:mm:ss')}"></td>
-                    <td>
-                        <a th:href="@{'/seckill/'+${c.seckillId}+'/detail'}">秒杀详情</a>
+                    <td th:text="${c.name}" class="active"></td>
+                    <td th:text="${c.number}" class="success"></td>
+                    <td th:text="${#dates.format(c.startTime,'yyyy-MM-dd HH:mm:ss')}"  class="warning"></td>
+                    <td th:text="${#dates.format(c.endTime,'yyyy-MM-dd HH:mm:ss')}"  class="danger"></td>
+                    <td class="info">
+                        <a th:href="@{'/seckill/'+${c.seckillId}+'/detail'}">浏览详情</a>
                     </td>
                 </tr>
                 </tbody>

@@ -26,8 +26,8 @@ public class RedisSeckillImpl implements RedisSeckill {
     @Autowired
     private RestTemplate restTemplate;
 
-    //真正的情况不应该写死，应该使用ribbon去获取服务所在的url
-    private String REST_URL_PREFIX="http://localhost:8000/seckill";
+
+    private static final String REST_URL_PREFIX="http://SERVER";
 
     @Override
     public Exposer exportSeckillUrl(int seckillId) {
@@ -36,7 +36,7 @@ public class RedisSeckillImpl implements RedisSeckill {
         Seckill seckill = redisDao.getSeckill(seckillId);
         if (seckill == null) {
             // 2.访问数据库
-            seckill = restTemplate.getForObject(REST_URL_PREFIX + "/get/" + seckillId, Seckill.class);
+            seckill = restTemplate.getForObject(REST_URL_PREFIX + "/seckill/get/" + seckillId, Seckill.class);
             if (seckill == null) {
                 return new Exposer(false, seckillId);
             } else {
@@ -84,7 +84,7 @@ public class RedisSeckillImpl implements RedisSeckill {
     public Seckill getById(int seckillId) {
         Seckill s = redisDao.getSeckill(seckillId);
         if (s == null){
-            return restTemplate.getForObject(REST_URL_PREFIX + "/get/" + seckillId, Seckill.class);
+            return restTemplate.getForObject(REST_URL_PREFIX + "/seckill/get/" + seckillId, Seckill.class);
         }
         return s;
     }

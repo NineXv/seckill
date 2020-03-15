@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/seckill")
 public class ExecutionController {
 
@@ -18,13 +18,11 @@ public class ExecutionController {
     MysqlService mysqlService;
 
     @GetMapping("/get/{id}")
-    @ResponseBody
     public Seckill get(@PathVariable("id") int seckillId){
         return mysqlService.getById(seckillId);
     }
 
     @GetMapping("/list")
-    @ResponseBody
     public String list(){
         int page = 0; //分页这一块为了偷懒就写死了
         List<Seckill> seckillList = mysqlService.getSeckillList(page);

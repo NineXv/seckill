@@ -3,7 +3,7 @@ server:
 #Eureka配置
 eureka:
   instance:
-    instance-id: Server
+    instance-id: SERVER
   client:
     register-with-eureka: true
     service-url:
@@ -19,21 +19,21 @@ mybatis:
 
 spring:
   application:
-    name: Server
+    name: SERVER
   datasource:
-    url: jdbc:mysql:
-    username: root
+    url: 
+    username: 
     password: 
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   rabbitmq:
     host: 
     port: 5672
-    username: admin
+    username: 
     password: 
     template:
       exchange: amq.direct
-      routing-key: seckill
+      routing-key: 
     virtual-host: admin
     publisher-confirms: true
     publisher-returns: true

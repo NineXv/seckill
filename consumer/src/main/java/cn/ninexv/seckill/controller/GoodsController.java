@@ -32,7 +32,7 @@ public class GoodsController {
     @Autowired
     RedisDao redisDao;
 
-    private String REST_URL_PREFIX="http://localhost:8000/seckill";
+    private static final String REST_URL_PREFIX="http://SERVER";
 
     /**
      * 更新redis库存
@@ -40,7 +40,7 @@ public class GoodsController {
     @GetMapping("/update")
     public String updateList(Model model){
         // 获取列表页
-        String lists = restTemplate.getForObject(REST_URL_PREFIX + "/list", String.class);
+        String lists = restTemplate.getForObject(REST_URL_PREFIX + "/seckill/list", String.class);
         List<Seckill> seckills = new ArrayList<>();
         try {
             //接收并将json转化为list

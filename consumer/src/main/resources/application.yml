@@ -1,0 +1,52 @@
+server:
+  port:  8001
+
+spring:
+  flyway:
+    encoding: utf-8
+  thymeleaf: #### thymeleaf
+    prefix: classpath:/templates/
+    check-template-location: true
+    servlet:
+      content-type: text/html
+    mode: LEGACYHTML5
+    cache: false
+  profiles:
+    active: dev
+
+  redis: # Redis数据库
+    database: 1
+    host: 
+    port: 6379
+    password: 
+    timeout: 1000
+    lettuce:
+      pool:
+        max-active: 10
+        max-wait: -1
+        max-idle: 10
+        min-idle: 0
+
+  rabbitmq: #### rabbitmq
+    template:
+      exchange: amq.direct
+      routing-key: 
+    host: 
+    port: 5672
+    username: admin
+    password: 
+    virtual-host: admin # 设置发送的用户
+    publisher-returns:  true #开启发送失败退回
+    publisher-confirms:  true #开启发送确认
+    listener:
+      simple:
+        acknowledge-mode: manual #开启ACK
+
+
+#Eureka配置
+eureka:
+  client:
+    register-with-eureka: false  #不向eureka注册自己
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka/
+
